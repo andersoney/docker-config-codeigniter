@@ -6,4 +6,7 @@ Na tela de login dá o seguinte erro:
 Para corrigir execute o seguinte comando.
 
     use fase1;
-    SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));
+    
+## Ativação do sistema.
+
+Copie o arquivo .env.example para .env e configure de acordo com os dados desejado ao banco, com o code-igniter estão no arquivo config/database.php. Apos feito isto basta rodar o script make usando o comando `make run`
