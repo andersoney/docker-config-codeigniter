@@ -1,0 +1,67 @@
+version: '3'
+services:
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./public:/public
+      - ./site.conf:/etc/nginx/conf.d/default.conf
+    networks: 
+      isolated_nw:
+    ports:
+      - "81:80"
+    restart: always
+    container_name: nginx
+
+  php:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./public:/public
+      - ./php.ini:/usr/local/etc/php/php.ini
+      - ./php_browscap.ini:/usr/local/etc/php/php_browscap.ini
+    depends_on:
+      - database
+    networks:
+      isolated_nw:
+    container_name: php
+
+  database:
+    image: mysql:5.7
+    volumes:
+      - ./database_folder:/var/lib/mysql
+      - ./scripts:/scripts
+      - ./database_config:/etc/mysql/
+    networks:
+      isolated_nw:
+    ports:
+      - 3307:3306
+    env_file:
+      - .env
+    container_name: mysqld.conectala
+    # command: "/scripts/config.sh"
+    # entrypoint: ["/scripts/config.sh"]
+
+  phpmyadmin:
+    depends_on:
+      - database
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+      - '8282:80'
+    env_file:
+      - .env
+    networks:
+      isolated_nw:
+    container_name: phpmyadmin
+
+networks:
+  isolated_nw:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.24.80.0/24
+          aux_addresses:
+            database: 172.24.80.3
+            nginx: 172.24.80.4
