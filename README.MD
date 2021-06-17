@@ -10,3 +10,10 @@ Para corrigir execute o seguinte comando.
 ## Ativação do sistema.
 
 Copie o arquivo .env.example para .env e configure de acordo com os dados desejado ao banco, com o code-igniter estão no arquivo config/database.php. Apos feito isto basta rodar o script make usando o comando `make run`
+
+O codigo do codeigniter vai na pasta public dentro do diretorio raiz
+
+## Dependencias
+* Docker-cli
+* Docker-compose
+* ultilizatio make
