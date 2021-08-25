@@ -17,3 +17,7 @@ O codigo do codeigniter vai na pasta public dentro do diretorio raiz
 * Docker-cli
 * Docker-compose
 * ultilizatio make
+
+## Programas uteis para o desenvolvimento.
+* DBeaver
+* WinSCP
