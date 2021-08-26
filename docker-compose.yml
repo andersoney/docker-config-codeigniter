@@ -33,6 +33,9 @@ services:
       - "9003"
 
   database:
+    build:
+      context: database_config
+      dockerfile: Dockerfile
     image: mysql:5.7
     volumes:
       - ./database_folder:/var/lib/mysql
