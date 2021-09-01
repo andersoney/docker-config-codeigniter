@@ -1,5 +1,7 @@
 FROM php:7.2.24-fpm
 
+RUN mkdir -p /etc/nginx/conf.d
+
 RUN echo 'deb http://httpredir.debian.org/debian jessie contrib' >> /etc/apt/sources.list
 
 RUN apt-get update
