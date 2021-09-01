@@ -44,7 +44,7 @@ services:
     networks:
       isolated_nw:
     ports:
-      - 3307:3306
+      - 3306:3306
     env_file:
       - .env
     container_name: mysqld.conectala
